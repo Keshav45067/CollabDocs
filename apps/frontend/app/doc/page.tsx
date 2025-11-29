@@ -130,6 +130,7 @@ export default function DocEditorUI() {
     if (!editorRef.current) return;
     const txt = editorRef.current.innerText;
     setContent(txt);
+    console.log(txt);
     scheduleAutosave();
   }
 
