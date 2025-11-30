@@ -18,6 +18,7 @@ type Config struct {
 	GracefulShutdownTimeout time.Duration
 	RateLimitRPS            float64
 	RateLimitBurst          int
+	IsProduction            bool
 }
 
 func Load() *Config {
@@ -30,6 +31,7 @@ func Load() *Config {
 		RateLimitRPS:            mustFloatEnv("RATE_LIMIT_RPS"),               //10.0
 		RateLimitBurst:          mustIntEnv("RATE_LIMIT_BURST"),               //20
 		RequestTimeout:          mustDurationEnv("REQUEST_TIMEOUT"),
+		IsProduction:            mustBool("IS_PRODUCTION"),
 	}
 }
 
@@ -103,4 +105,15 @@ func mustDurationEnv(key string) time.Duration {
 		log.Fatalf("invalid %s: %v", key, err)
 	}
 	return d
+}
+
+func mustBool(key string) bool {
+	v := getEnv(key, "")
+	if v == "" {
+		log.Panicf("Environment Variable '%v' not provided ", key)
+	}
+	if v == "true" {
+		return true
+	}
+	return false
 }

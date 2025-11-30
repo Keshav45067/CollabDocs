@@ -23,10 +23,9 @@ func Timeout(timeout time.Duration) gin.HandlerFunc {
 				if p := recover(); p != nil {
 					panicChan <- p
 				}
+				close(done)
 			}()
 			c.Next()
-			close(done)
-
 		}()
 
 		select {

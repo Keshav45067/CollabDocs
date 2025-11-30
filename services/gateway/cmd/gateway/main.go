@@ -8,14 +8,17 @@ import (
 	"os/signal"
 	"syscall"
 
+	"gateway/internal/client"
 	"gateway/internal/config"
+	httpHandler "gateway/internal/handler/http_handler"
 	"gateway/internal/server"
 )
 
 func main() {
 	cfg := config.Load()
+	clients := client.ClientInitialise(cfg)
 
-	router := server.NewRouter(cfg)
+	router := httpHandler.NewRouter(cfg, clients)
 	httpServer := server.NewHTTPServer(cfg, router)
 
 	go func() {

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common.v1;
+
+option go_package = "gateway/proto/common/v1;commonv1";
+
+message Uuid {
+  string value = 1;
+}
+
+message Error {
+  string code = 1;
+  string message = 2;
+}

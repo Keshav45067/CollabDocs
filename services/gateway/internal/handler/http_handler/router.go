@@ -1,20 +1,20 @@
-package server
+package httpHandler
 
 import (
 	"net/http"
 	"time"
 
+	"gateway/internal/client"
 	"gateway/internal/config"
 	"gateway/internal/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
-func NewRouter(cnfg *config.Config) *gin.Engine {
+func NewRouter(cnfg *config.Config, clients *client.Clients) *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.New()
 	r.Use(gin.Recovery())
-
 	r.Use(
 		middleware.CORS(cnfg.AllowedOrigins),
 		middleware.BodyLimit(cnfg.MaxBodyBytes),
@@ -29,6 +29,8 @@ func NewRouter(cnfg *config.Config) *gin.Engine {
 			"time":   time.Now().UTC(),
 		})
 	})
+	auth := r.Group("/auth")
+	AuthHTTPRouter(auth, clients)
 
 	return r
 }
