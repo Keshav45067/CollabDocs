@@ -22,7 +22,7 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
+from proto.common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x61uth/v1/auth.proto\x12\x07\x61uth.v1\x1a\x16\x63ommon/v1/common.proto\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"c\n\rLoginResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12 \n\x07user_id\x18\x02 \x01(\x0b\x32\x0f.common.v1.Uuid\x12\x1f\n\x05\x65rror\x18\x03 \x01(\x0b\x32\x10.common.v1.Error\"@\n\x0fRegisterRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\"F\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x12\n\nerror_code\x18\x03 \x01(\r2\x8a\x01\n\x0b\x41uthService\x12\x38\n\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x00\x12\x41\n\x08Register\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x00\x42\x1eZ\x1cgateway/proto/auth/v1;authv1b\x06proto3')

@@ -3,14 +3,15 @@ package utils
 import (
 	"crypto/tls"
 	"log"
-	"time"
+
+	// "time"
 
 	"gateway/internal/config"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/grpc/keepalive"
+	// "google.golang.org/grpc/keepalive"
 )
 
 func GRPCConnector(serviceAddr string, config *config.Config, tls *tls.Config) *grpc.ClientConn {
@@ -27,11 +28,11 @@ func GRPCConnector(serviceAddr string, config *config.Config, tls *tls.Config) *
 
 	var opt []grpc.DialOption = []grpc.DialOption{
 		grpc.WithTransportCredentials(creds),
-		grpc.WithKeepaliveParams(keepalive.ClientParameters{
-			Time:                30 * time.Second,
-			Timeout:             10 * time.Second,
-			PermitWithoutStream: true,
-		}),
+		// grpc.WithKeepaliveParams(keepalive.ClientParameters{
+		// 	Time:                30 * time.Second,
+		// 	Timeout:             10 * time.Second,
+		// 	PermitWithoutStream: true,
+		// }),
 	}
 
 	conn, err := grpc.NewClient(serviceAddr, opt...)

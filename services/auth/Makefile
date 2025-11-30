@@ -17,6 +17,7 @@ protos: init-packages
 		-I $(PROTO_DIR) \
 		--python_out=$(PY_OUT) \
 		--grpc_python_out=$(PY_OUT) \
+		--pyi_out=$(PY_OUT) \
 		$(PROTO_FILES)
 
 # Ensure proper Python import structure

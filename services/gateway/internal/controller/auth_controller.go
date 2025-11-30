@@ -25,7 +25,8 @@ func (ctr *AuthController) Login() gin.HandlerFunc {
 			c.AbortWithStatus(http.StatusUnprocessableEntity)
 		}
 		log.Print("Login working")
-		_, err := ctr.AuthClient.Login(c, &parsedData)
+		res, err := ctr.AuthClient.Login(c, &parsedData)
+		log.Printf("%v", res)
 		if err != nil {
 			c.AbortWithStatus(http.StatusBadRequest)
 		}
