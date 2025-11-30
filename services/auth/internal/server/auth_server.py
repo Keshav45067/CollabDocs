@@ -26,8 +26,7 @@ class AuthServer():
         return server
 
     def start(self, server_credentials: grpc.ServerCredentials | None = None):
-        logging.info("Starting Server on address: ", self.config.address())
-        print("Starting Server on address: ", self.config.address())
+        logging.info(f"Starting Server on address: {self.config.address()}")
         self._server = self._build_server(auth_servicer=AuthServicer())
         self._server.start()
         logger.info("Auth gRPC server started")
