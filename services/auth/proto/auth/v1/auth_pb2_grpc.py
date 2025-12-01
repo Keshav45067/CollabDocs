@@ -44,6 +44,16 @@ class AuthServiceStub(object):
                 request_serializer=auth_dot_v1_dot_auth__pb2.RegisterRequest.SerializeToString,
                 response_deserializer=auth_dot_v1_dot_auth__pb2.RegisterResponse.FromString,
                 _registered_method=True)
+        self.ResendOtp = channel.unary_unary(
+                '/auth.v1.AuthService/ResendOtp',
+                request_serializer=auth_dot_v1_dot_auth__pb2.ResendOtpRequest.SerializeToString,
+                response_deserializer=auth_dot_v1_dot_auth__pb2.ResendOtpResponse.FromString,
+                _registered_method=True)
+        self.VerifyOtp = channel.unary_unary(
+                '/auth.v1.AuthService/VerifyOtp',
+                request_serializer=auth_dot_v1_dot_auth__pb2.VerifyOtpRequest.SerializeToString,
+                response_deserializer=auth_dot_v1_dot_auth__pb2.VerifyOtpResponse.FromString,
+                _registered_method=True)
 
 
 class AuthServiceServicer(object):
@@ -61,6 +71,18 @@ class AuthServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ResendOtp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def VerifyOtp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AuthServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +95,16 @@ def add_AuthServiceServicer_to_server(servicer, server):
                     servicer.Register,
                     request_deserializer=auth_dot_v1_dot_auth__pb2.RegisterRequest.FromString,
                     response_serializer=auth_dot_v1_dot_auth__pb2.RegisterResponse.SerializeToString,
+            ),
+            'ResendOtp': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResendOtp,
+                    request_deserializer=auth_dot_v1_dot_auth__pb2.ResendOtpRequest.FromString,
+                    response_serializer=auth_dot_v1_dot_auth__pb2.ResendOtpResponse.SerializeToString,
+            ),
+            'VerifyOtp': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerifyOtp,
+                    request_deserializer=auth_dot_v1_dot_auth__pb2.VerifyOtpRequest.FromString,
+                    response_serializer=auth_dot_v1_dot_auth__pb2.VerifyOtpResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +161,60 @@ class AuthService(object):
             '/auth.v1.AuthService/Register',
             auth_dot_v1_dot_auth__pb2.RegisterRequest.SerializeToString,
             auth_dot_v1_dot_auth__pb2.RegisterResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ResendOtp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/auth.v1.AuthService/ResendOtp',
+            auth_dot_v1_dot_auth__pb2.ResendOtpRequest.SerializeToString,
+            auth_dot_v1_dot_auth__pb2.ResendOtpResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def VerifyOtp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/auth.v1.AuthService/VerifyOtp',
+            auth_dot_v1_dot_auth__pb2.VerifyOtpRequest.SerializeToString,
+            auth_dot_v1_dot_auth__pb2.VerifyOtpResponse.FromString,
             options,
             channel_credentials,
             insecure,

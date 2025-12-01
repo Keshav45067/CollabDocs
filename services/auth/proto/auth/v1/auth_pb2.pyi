@@ -15,14 +15,14 @@ class LoginRequest(_message.Message):
     def __init__(self, email: _Optional[str] = ..., password: _Optional[str] = ...) -> None: ...
 
 class LoginResponse(_message.Message):
-    __slots__ = ("success", "user_id", "error")
+    __slots__ = ("success", "user_id", "token")
     SUCCESS_FIELD_NUMBER: _ClassVar[int]
     USER_ID_FIELD_NUMBER: _ClassVar[int]
-    ERROR_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_FIELD_NUMBER: _ClassVar[int]
     success: bool
     user_id: _common_pb2.Uuid
-    error: _common_pb2.Error
-    def __init__(self, success: bool = ..., user_id: _Optional[_Union[_common_pb2.Uuid, _Mapping]] = ..., error: _Optional[_Union[_common_pb2.Error, _Mapping]] = ...) -> None: ...
+    token: str
+    def __init__(self, success: bool = ..., user_id: _Optional[_Union[_common_pb2.Uuid, _Mapping]] = ..., token: _Optional[str] = ...) -> None: ...
 
 class RegisterRequest(_message.Message):
     __slots__ = ("name", "email", "password")
@@ -35,11 +35,37 @@ class RegisterRequest(_message.Message):
     def __init__(self, name: _Optional[str] = ..., email: _Optional[str] = ..., password: _Optional[str] = ...) -> None: ...
 
 class RegisterResponse(_message.Message):
-    __slots__ = ("success", "error", "error_code")
+    __slots__ = ("success", "error", "time")
     SUCCESS_FIELD_NUMBER: _ClassVar[int]
     ERROR_FIELD_NUMBER: _ClassVar[int]
-    ERROR_CODE_FIELD_NUMBER: _ClassVar[int]
+    TIME_FIELD_NUMBER: _ClassVar[int]
     success: bool
     error: str
-    error_code: int
-    def __init__(self, success: bool = ..., error: _Optional[str] = ..., error_code: _Optional[int] = ...) -> None: ...
+    time: int
+    def __init__(self, success: bool = ..., error: _Optional[str] = ..., time: _Optional[int] = ...) -> None: ...
+
+class ResendOtpRequest(_message.Message):
+    __slots__ = ("email",)
+    EMAIL_FIELD_NUMBER: _ClassVar[int]
+    email: str
+    def __init__(self, email: _Optional[str] = ...) -> None: ...
+
+class ResendOtpResponse(_message.Message):
+    __slots__ = ("success", "time")
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    TIME_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    time: int
+    def __init__(self, success: bool = ..., time: _Optional[int] = ...) -> None: ...
+
+class VerifyOtpRequest(_message.Message):
+    __slots__ = ("email",)
+    EMAIL_FIELD_NUMBER: _ClassVar[int]
+    email: str
+    def __init__(self, email: _Optional[str] = ...) -> None: ...
+
+class VerifyOtpResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...

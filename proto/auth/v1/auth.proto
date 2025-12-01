@@ -9,6 +9,8 @@ import "common/v1/common.proto";
 service AuthService {
   rpc Login (LoginRequest) returns (LoginResponse) {};
   rpc Register (RegisterRequest) returns (RegisterResponse) {};
+  rpc ResendOtp (ResendOtpRequest) returns (ResendOtpResponse) {};
+  rpc VerifyOtp (VerifyOtpRequest) returns (VerifyOtpResponse) {};
 }
 
 message LoginRequest {
@@ -19,7 +21,7 @@ message LoginRequest {
 message LoginResponse {
   bool success = 1;
   common.v1.Uuid user_id = 2;
-  common.v1.Error error = 3;
+  string token = 3;
 }
 
 message RegisterRequest {
@@ -27,8 +29,27 @@ message RegisterRequest {
     string email = 2;
     string password = 3;
 }
+
 message RegisterResponse {
     bool success = 1;
     string error = 2;
-    uint32 error_code = 3; 
+    uint32 time = 3; 
 }
+
+message ResendOtpRequest {
+    string email = 1;
+}
+
+message ResendOtpResponse {
+    bool success = 1;
+    uint32 time = 2;
+}
+
+message VerifyOtpRequest {
+    string email = 1;
+}
+
+message VerifyOtpResponse {
+    bool success = 1;
+}
+
