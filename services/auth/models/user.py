@@ -4,13 +4,10 @@ from uuid import UUID
 from datetime import datetime
 import uuid
 from sqlalchemy import String, Integer, DateTime
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
 from sqlalchemy.dialects.postgresql import UUID
-
-
-class Base(DeclarativeBase):
-    pass
+from config.db import Base
 
 
 class User(Base):

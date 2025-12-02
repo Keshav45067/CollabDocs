@@ -1,4 +1,4 @@
-from concurrent import futures
+import asyncio
 from config.config import Config
 import grpc
 import logging
@@ -10,14 +10,13 @@ class AuthServer():
 
     def __init__(self, config: Config):
         self.config = config
-        self._server: grpc.Server | None = None
+        self._server: grpc.aio.Server | None = None
 
-    def _build_server(self, auth_servicer: auth_pb2_grpc.AuthServiceServicer, server_credentials: grpc.ServerCredentials | None = None)-> grpc.Server:
-        server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    def _build_server(self, auth_servicer: AuthServicer, server_credentials: grpc.ServerCredentials | None = None)-> grpc.aio.Server:
+        server = grpc.aio.server()
         auth_pb2_grpc.add_AuthServiceServicer_to_server(servicer = auth_servicer, server=server)
         if self.config.is_production:
-            # if server_credentials is None:
-            #     Throw new error
+            assert server_credentials is not None, "Server Credentials are not provided"
             server.add_secure_port(self.config.address(), server_credentials=server_credentials)
         else:
             
@@ -25,17 +24,15 @@ class AuthServer():
         
         return server
 
-    def start(self, server_credentials: grpc.ServerCredentials | None = None):
+    async def start(self, server_credentials: grpc.ServerCredentials | None = None):
         logging.info(f"Starting Server on address: {self.config.address()}")
-        self._server = self._build_server(auth_servicer=AuthServicer())
-        self._server.start()
+        self._server = self._build_server(auth_servicer=AuthServicer(), server_credentials=server_credentials)
+        await self._server.start()
         logger.info("Auth gRPC server started")
 
-    def block_until_shutdown(self) -> None:
+    async def stop(self, grace: float = 10.0) -> None:
         assert self._server is not None, "Server not started"
-        try:
-            self._server.wait_for_termination()
-        except KeyboardInterrupt:
-            logger.info("Shutting down Auth gRPC server...")
-            self._server.stop(grace=10.0)
-            logger.info("Auth gRPC server stopped")
+        logger.info("Stopping Auth gRPC server gracefully...")
+        await self._server.stop(grace=grace)
+        logger.info("Auth gRPC server stopped")
+

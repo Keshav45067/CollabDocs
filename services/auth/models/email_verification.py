@@ -1,11 +1,9 @@
 import uuid
 from datetime import datetime, timezone, timedelta
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
-
-class Base(DeclarativeBase):
-    pass
+from config.db import Base
 
 class EmailVerification(Base):
     __tablename__ = "email_verifications"
