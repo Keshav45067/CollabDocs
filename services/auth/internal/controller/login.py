@@ -28,7 +28,8 @@ class LoginHandler():
 
     async def login(self, request: auth_pb2.LoginRequest, context : aio.ServicerContext)-> auth_pb2.LoginResponse:
         try:
-            user: Optional[User] = await self._authenticate_user(email=request.email, password=request.password)
+            email = request.email.lower().strip()
+            user: Optional[User] = await self._authenticate_user(email=email, password=request.password)
             if user is None:
                 await context.abort(
                     grpc.StatusCode.UNAUTHENTICATED,

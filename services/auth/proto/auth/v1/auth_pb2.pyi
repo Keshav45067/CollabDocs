@@ -59,10 +59,12 @@ class ResendOtpResponse(_message.Message):
     def __init__(self, success: bool = ..., time: _Optional[int] = ...) -> None: ...
 
 class VerifyOtpRequest(_message.Message):
-    __slots__ = ("email",)
+    __slots__ = ("email", "otp")
     EMAIL_FIELD_NUMBER: _ClassVar[int]
+    OTP_FIELD_NUMBER: _ClassVar[int]
     email: str
-    def __init__(self, email: _Optional[str] = ...) -> None: ...
+    otp: str
+    def __init__(self, email: _Optional[str] = ..., otp: _Optional[str] = ...) -> None: ...
 
 class VerifyOtpResponse(_message.Message):
     __slots__ = ("success",)

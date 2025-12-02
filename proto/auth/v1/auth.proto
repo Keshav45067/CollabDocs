@@ -47,6 +47,7 @@ message ResendOtpResponse {
 
 message VerifyOtpRequest {
     string email = 1;
+    string otp = 2;
 }
 
 message VerifyOtpResponse {

@@ -166,7 +166,6 @@ class RegisterHandler():
                     grpc.StatusCode.ALREADY_EXISTS,
                     "User with provided email already exists"
                 )
-
             email_verf_result: Optional[EmailVerification] = await self.email_verf_repo.get_email_verification(email= email)
             if email_verf_result is None:
                 await context.abort(
@@ -174,6 +173,7 @@ class RegisterHandler():
                     "Email not found"
                 ) 
             ok, message = self._is_otp_valid(email_verf_result=email_verf_result, otp = request.otp)
+            logger.info("working")
             if not ok:
                 await context.abort(grpc.StatusCode.UNAUTHENTICATED, message)
 

@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from proto.common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x61uth/v1/auth.proto\x12\x07\x61uth.v1\x1a\x16\x63ommon/v1/common.proto\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"Q\n\rLoginResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12 \n\x07user_id\x18\x02 \x01(\x0b\x32\x0f.common.v1.Uuid\x12\r\n\x05token\x18\x03 \x01(\t\"@\n\x0fRegisterRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\"@\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\r\"!\n\x10ResendOtpRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\"2\n\x11ResendOtpResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\r\"!\n\x10VerifyOtpRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\"$\n\x11VerifyOtpResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x96\x02\n\x0b\x41uthService\x12\x38\n\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x00\x12\x41\n\x08Register\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x00\x12\x44\n\tResendOtp\x12\x19.auth.v1.ResendOtpRequest\x1a\x1a.auth.v1.ResendOtpResponse\"\x00\x12\x44\n\tVerifyOtp\x12\x19.auth.v1.VerifyOtpRequest\x1a\x1a.auth.v1.VerifyOtpResponse\"\x00\x42\x1eZ\x1cgateway/proto/auth/v1;authv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x61uth/v1/auth.proto\x12\x07\x61uth.v1\x1a\x16\x63ommon/v1/common.proto\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"Q\n\rLoginResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12 \n\x07user_id\x18\x02 \x01(\x0b\x32\x0f.common.v1.Uuid\x12\r\n\x05token\x18\x03 \x01(\t\"@\n\x0fRegisterRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\"@\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x12\x0c\n\x04time\x18\x03 \x01(\r\"!\n\x10ResendOtpRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\"2\n\x11ResendOtpResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\r\".\n\x10VerifyOtpRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x0b\n\x03otp\x18\x02 \x01(\t\"$\n\x11VerifyOtpResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x96\x02\n\x0b\x41uthService\x12\x38\n\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x00\x12\x41\n\x08Register\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x00\x12\x44\n\tResendOtp\x12\x19.auth.v1.ResendOtpRequest\x1a\x1a.auth.v1.ResendOtpResponse\"\x00\x12\x44\n\tVerifyOtp\x12\x19.auth.v1.VerifyOtpRequest\x1a\x1a.auth.v1.VerifyOtpResponse\"\x00\x42\x1eZ\x1cgateway/proto/auth/v1;authv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -46,9 +46,9 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_RESENDOTPRESPONSE']._serialized_start=354
   _globals['_RESENDOTPRESPONSE']._serialized_end=404
   _globals['_VERIFYOTPREQUEST']._serialized_start=406
-  _globals['_VERIFYOTPREQUEST']._serialized_end=439
-  _globals['_VERIFYOTPRESPONSE']._serialized_start=441
-  _globals['_VERIFYOTPRESPONSE']._serialized_end=477
-  _globals['_AUTHSERVICE']._serialized_start=480
-  _globals['_AUTHSERVICE']._serialized_end=758
+  _globals['_VERIFYOTPREQUEST']._serialized_end=452
+  _globals['_VERIFYOTPRESPONSE']._serialized_start=454
+  _globals['_VERIFYOTPRESPONSE']._serialized_end=490
+  _globals['_AUTHSERVICE']._serialized_start=493
+  _globals['_AUTHSERVICE']._serialized_end=771
 # @@protoc_insertion_point(module_scope)
