@@ -2,16 +2,12 @@ package utils
 
 import (
 	"crypto/tls"
-	"log"
-
-	// "time"
-
 	"gateway/internal/config"
+	"log"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
-	// "google.golang.org/grpc/keepalive"
 )
 
 func GRPCConnector(serviceAddr string, config *config.Config, tls *tls.Config) *grpc.ClientConn {

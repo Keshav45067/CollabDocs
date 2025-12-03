@@ -78,7 +78,7 @@ type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	UserId        *v1.Uuid               `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Error         *v1.Error              `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -127,11 +127,11 @@ func (x *LoginResponse) GetUserId() *v1.Uuid {
 	return nil
 }
 
-func (x *LoginResponse) GetError() *v1.Error {
+func (x *LoginResponse) GetToken() string {
 	if x != nil {
-		return x.Error
+		return x.Token
 	}
-	return nil
+	return ""
 }
 
 type RegisterRequest struct {
@@ -198,7 +198,7 @@ type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Error         string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	ErrorCode     uint32                 `protobuf:"varint,3,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	Time          uint32                 `protobuf:"varint,3,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -247,11 +247,203 @@ func (x *RegisterResponse) GetError() string {
 	return ""
 }
 
-func (x *RegisterResponse) GetErrorCode() uint32 {
+func (x *RegisterResponse) GetTime() uint32 {
 	if x != nil {
-		return x.ErrorCode
+		return x.Time
 	}
 	return 0
+}
+
+type ResendOtpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResendOtpRequest) Reset() {
+	*x = ResendOtpRequest{}
+	mi := &file_auth_v1_auth_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResendOtpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResendOtpRequest) ProtoMessage() {}
+
+func (x *ResendOtpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResendOtpRequest.ProtoReflect.Descriptor instead.
+func (*ResendOtpRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ResendOtpRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type ResendOtpResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Time          uint32                 `protobuf:"varint,2,opt,name=time,proto3" json:"time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResendOtpResponse) Reset() {
+	*x = ResendOtpResponse{}
+	mi := &file_auth_v1_auth_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResendOtpResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResendOtpResponse) ProtoMessage() {}
+
+func (x *ResendOtpResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResendOtpResponse.ProtoReflect.Descriptor instead.
+func (*ResendOtpResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ResendOtpResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ResendOtpResponse) GetTime() uint32 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+type VerifyOtpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Otp           string                 `protobuf:"bytes,2,opt,name=otp,proto3" json:"otp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyOtpRequest) Reset() {
+	*x = VerifyOtpRequest{}
+	mi := &file_auth_v1_auth_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyOtpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyOtpRequest) ProtoMessage() {}
+
+func (x *VerifyOtpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyOtpRequest.ProtoReflect.Descriptor instead.
+func (*VerifyOtpRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *VerifyOtpRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *VerifyOtpRequest) GetOtp() string {
+	if x != nil {
+		return x.Otp
+	}
+	return ""
+}
+
+type VerifyOtpResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyOtpResponse) Reset() {
+	*x = VerifyOtpResponse{}
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyOtpResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyOtpResponse) ProtoMessage() {}
+
+func (x *VerifyOtpResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyOtpResponse.ProtoReflect.Descriptor instead.
+func (*VerifyOtpResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *VerifyOtpResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
 }
 
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
@@ -261,23 +453,34 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x16common/v1/common.proto\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"{\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"i\n" +
 	"\rLoginResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12(\n" +
-	"\auser_id\x18\x02 \x01(\v2\x0f.common.v1.UuidR\x06userId\x12&\n" +
-	"\x05error\x18\x03 \x01(\v2\x10.common.v1.ErrorR\x05error\"W\n" +
+	"\auser_id\x18\x02 \x01(\v2\x0f.common.v1.UuidR\x06userId\x12\x14\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"W\n" +
 	"\x0fRegisterRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"V\n" +
 	"\x10RegisterResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
-	"\x05error\x18\x02 \x01(\tR\x05error\x12\x1d\n" +
-	"\n" +
-	"error_code\x18\x03 \x01(\rR\terrorCode2\x8a\x01\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error\x12\x12\n" +
+	"\x04time\x18\x03 \x01(\rR\x04time\"(\n" +
+	"\x10ResendOtpRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"A\n" +
+	"\x11ResendOtpResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x12\n" +
+	"\x04time\x18\x02 \x01(\rR\x04time\":\n" +
+	"\x10VerifyOtpRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x10\n" +
+	"\x03otp\x18\x02 \x01(\tR\x03otp\"-\n" +
+	"\x11VerifyOtpResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x96\x02\n" +
 	"\vAuthService\x128\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x00\x12A\n" +
-	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x00B\x1eZ\x1cgateway/proto/auth/v1;authv1b\x06proto3"
+	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x00\x12D\n" +
+	"\tResendOtp\x12\x19.auth.v1.ResendOtpRequest\x1a\x1a.auth.v1.ResendOtpResponse\"\x00\x12D\n" +
+	"\tVerifyOtp\x12\x19.auth.v1.VerifyOtpRequest\x1a\x1a.auth.v1.VerifyOtpResponse\"\x00B\x1eZ\x1cgateway/proto/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
@@ -291,27 +494,33 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_auth_v1_auth_proto_rawDescData
 }
 
-var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(*LoginRequest)(nil),     // 0: auth.v1.LoginRequest
-	(*LoginResponse)(nil),    // 1: auth.v1.LoginResponse
-	(*RegisterRequest)(nil),  // 2: auth.v1.RegisterRequest
-	(*RegisterResponse)(nil), // 3: auth.v1.RegisterResponse
-	(*v1.Uuid)(nil),          // 4: common.v1.Uuid
-	(*v1.Error)(nil),         // 5: common.v1.Error
+	(*LoginRequest)(nil),      // 0: auth.v1.LoginRequest
+	(*LoginResponse)(nil),     // 1: auth.v1.LoginResponse
+	(*RegisterRequest)(nil),   // 2: auth.v1.RegisterRequest
+	(*RegisterResponse)(nil),  // 3: auth.v1.RegisterResponse
+	(*ResendOtpRequest)(nil),  // 4: auth.v1.ResendOtpRequest
+	(*ResendOtpResponse)(nil), // 5: auth.v1.ResendOtpResponse
+	(*VerifyOtpRequest)(nil),  // 6: auth.v1.VerifyOtpRequest
+	(*VerifyOtpResponse)(nil), // 7: auth.v1.VerifyOtpResponse
+	(*v1.Uuid)(nil),           // 8: common.v1.Uuid
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	4, // 0: auth.v1.LoginResponse.user_id:type_name -> common.v1.Uuid
-	5, // 1: auth.v1.LoginResponse.error:type_name -> common.v1.Error
-	0, // 2: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	2, // 3: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	1, // 4: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	3, // 5: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	8, // 0: auth.v1.LoginResponse.user_id:type_name -> common.v1.Uuid
+	0, // 1: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	2, // 2: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	4, // 3: auth.v1.AuthService.ResendOtp:input_type -> auth.v1.ResendOtpRequest
+	6, // 4: auth.v1.AuthService.VerifyOtp:input_type -> auth.v1.VerifyOtpRequest
+	1, // 5: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
+	3, // 6: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	5, // 7: auth.v1.AuthService.ResendOtp:output_type -> auth.v1.ResendOtpResponse
+	7, // 8: auth.v1.AuthService.VerifyOtp:output_type -> auth.v1.VerifyOtpResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
@@ -325,7 +534,7 @@ func file_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

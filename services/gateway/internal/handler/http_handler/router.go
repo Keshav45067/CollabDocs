@@ -15,6 +15,7 @@ func NewRouter(cnfg *config.Config, clients *client.Clients) *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.New()
 	r.Use(gin.Recovery())
+	r.Use(middleware.GrpcErrorRecovery())
 	r.Use(
 		middleware.CORS(cnfg.AllowedOrigins),
 		middleware.BodyLimit(cnfg.MaxBodyBytes),

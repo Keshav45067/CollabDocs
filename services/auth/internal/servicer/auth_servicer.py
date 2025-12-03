@@ -13,7 +13,9 @@ class AuthServicer(AuthServiceServicer):
         async with SessionFactory() as session:
             login_handler: LoginHandler = LoginHandler(session=session)
             res: LoginResponse = await login_handler.login(request=request, context=context)
-            return res
+            await session.commit()
+        logger.info("Auth done")
+        return res
 
     async def Register(self, request: RegisterRequest, context: grpc.aio.ServicerContext)-> RegisterResponse:
         async with SessionFactory() as session:

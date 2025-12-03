@@ -2,7 +2,7 @@ package controller
 
 import (
 	authv1 "gateway/proto/auth/v1"
-	"log"
+	"gateway/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,16 +23,15 @@ func (ctr *AuthController) Login() gin.HandlerFunc {
 		var parsedData authv1.LoginRequest
 		if err := c.ShouldBindJSON(&parsedData); err != nil {
 			c.AbortWithStatus(http.StatusUnprocessableEntity)
+			return
 		}
-		log.Print("Login working")
 		res, err := ctr.AuthClient.Login(c, &parsedData)
-		log.Printf("%v", res)
 		if err != nil {
-			c.AbortWithStatus(http.StatusBadRequest)
+			utils.ErrorGenerator(err)
 		}
 
 		c.JSON(http.StatusOK, gin.H{
-			"message": "Hello",
+			"token": res.Token,
 		})
 	}
 }
